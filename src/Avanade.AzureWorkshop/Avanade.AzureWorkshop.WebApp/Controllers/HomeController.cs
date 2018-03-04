@@ -13,10 +13,8 @@ namespace Avanade.AzureWorkshop.WebApp.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Music()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
