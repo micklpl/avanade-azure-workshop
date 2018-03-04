@@ -27,7 +27,6 @@ namespace Avanade.AzureWorkshop.WebApp.Controllers
             ViewBag.MachineId = Environment.MachineName;
             return View(_teamsService.GetHomePageData());
         }
-
         public ActionResult Music()
         {
             return View();
