@@ -10,6 +10,7 @@ namespace Avanade.AzureWorkshop.WebApp.Controllers
     {
         public ActionResult Index()
         {
+            ViewBag.MachineId = Environment.MachineName;
             return View();
         }
 
