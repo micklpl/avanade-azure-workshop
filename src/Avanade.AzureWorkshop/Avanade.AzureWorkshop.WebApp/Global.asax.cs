@@ -1,4 +1,4 @@
-﻿using Autofac;
+using Autofac;
 using Autofac.Integration.Mvc;
 using Avanade.AzureWorkshop.WebApp.BusinessLogic;
 using Avanade.AzureWorkshop.WebApp.Services;

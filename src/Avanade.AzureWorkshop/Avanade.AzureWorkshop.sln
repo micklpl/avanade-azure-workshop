@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avanade.AzureWorkshop.WebAp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avanade.AzureWorkshop.Topics", "Avanade.AzureWorkshop.Topics\Avanade.AzureWorkshop.Topics.csproj", "{2414829E-BB61-49AE-877B-8D6213B6A177}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avanade.AzureWorkshop.WebApp", "Avanade.AzureWorkshop.WebApp\Avanade.AzureWorkshop.WebApp.csproj", "{65C5D32D-BEC9-4DD7-A591-F5207EEE5AD7}"
+EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Avanade.AzureWorkshop.ResourceGroup", "Avanade.AzureWorkshop.ResourceGroup\Avanade.AzureWorkshop.ResourceGroup.deployproj", "{7A108173-6D34-4407-B09F-301366A6375B}"
 EndProject
 Global
