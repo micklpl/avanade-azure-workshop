@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26730.16
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avanade.AzureWorkshop", "Avanade.AzureWorkshop\Avanade.AzureWorkshop.csproj", "{20106A4B-B32B-40D6-B88C-6F81B530E3DB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avanade.AzureWorkshop.WebApp", "Avanade.AzureWorkshop.WebApp\Avanade.AzureWorkshop.WebApp.csproj", "{65C5D32D-BEC9-4DD7-A591-F5207EEE5AD7}"
+EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Avanade.AzureWorkshop.ResourceGroup", "Avanade.AzureWorkshop.ResourceGroup\Avanade.AzureWorkshop.ResourceGroup.deployproj", "{7A108173-6D34-4407-B09F-301366A6375B}"
 EndProject
 Global
@@ -17,6 +19,10 @@ Global
 		{20106A4B-B32B-40D6-B88C-6F81B530E3DB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20106A4B-B32B-40D6-B88C-6F81B530E3DB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20106A4B-B32B-40D6-B88C-6F81B530E3DB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65C5D32D-BEC9-4DD7-A591-F5207EEE5AD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65C5D32D-BEC9-4DD7-A591-F5207EEE5AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65C5D32D-BEC9-4DD7-A591-F5207EEE5AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65C5D32D-BEC9-4DD7-A591-F5207EEE5AD7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{7A108173-6D34-4407-B09F-301366A6375B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{7A108173-6D34-4407-B09F-301366A6375B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A108173-6D34-4407-B09F-301366A6375B}.Release|Any CPU.ActiveCfg = Release|Any CPU
