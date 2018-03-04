@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Azure Environment Variables";
+}
+
+<h2>Azure Environment Variables</h2>
+<table style="width:100%">
+    <tr>
+        <th>Variable Name</th>
+        <th>Value</th>
+        <th>Description</th>
+    </tr>
+    <tr>
+        <td>WEBSITE_SITE_NAME</td>
+        <td>@ViewBag.SiteName</td>
+        <td>The name of the site.</td>
+    </tr>
+    <tr>
+        <td>WEBSITE_SKU</td>
+        <td>@ViewBag.Sku</td>
+        <td>The sku of the site (Possible values: Free, Shared, Basic, Standard).</td>
+    </tr>
+    <tr>
+        <td>WEBSITE_COMPUTE_MODE</td>
+        <td>@ViewBag.ComputeMode</td>
+        <td>Specifies whether website is on a dedicated or shared VM/s (Possible values: Shared, Dedicated).</td>
+    </tr>
+    <tr>
+        <td>WEBSITE_HOSTNAME</td>
+        <td>@ViewBag.HostName</td>
+        <td>The Azure Website's primary host name for the site (For example: site.azurewebsites.net). Note that custom hostnames are not accounted for here.</td>
+    </tr>
+    <tr>
+        <td>WEBSITE_INSTANCE_ID</td>
+        <td>@ViewBag.InstanceId</td>
+        <td>The id representing the VM that the site is running on (If site runs on multiple instances, each instance will have a different id).</td>
+    </tr>
+</table>
+
