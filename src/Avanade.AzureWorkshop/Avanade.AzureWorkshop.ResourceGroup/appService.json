@@ -1,0 +1,70 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appService": {
+      "type": "object"
+    },
+    "appSettings": {
+      "type": "array"
+    },
+    "connectionStrings": {
+      "type": "array"
+    },
+    "serverFarmId": {
+      "type": "string"
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "apiVersion": "2016-08-01",
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('appService').name]",
+      "properties": {
+        "clientAffinityEnabled": false,
+        "name": "[parameters('appService').name]",
+        "serverFarmId": "[parameters('serverFarmId')]",
+        "hostNames": [
+          "[concat(parameters('appService').name,'.azurewebsites.net')]"
+        ],
+        "enabledHostNames": [
+          "[concat(parameters('appService').name,'.azurewebsites.net')]",
+          "[concat(parameters('appService').name,'.scm.azurewebsites.net')]"
+        ],
+        "hostNameSslStates": [
+          {
+            "name": "[concat(parameters('appService').name,'.azurewebsites.net')]",
+            "sslState": 0,
+            "thumbprint": null,
+            "ipBasedSslState": 0
+          },
+          {
+            "name": "[concat(parameters('appService').name,'.scm.azurewebsites.net')]",
+            "sslState": 0,
+            "thumbprint": null,
+            "ipBasedSslState": 0
+          }
+        ],
+        "siteConfig": {
+          "AlwaysOn": true,
+          "appSettings": "[parameters('appSettings')]",
+          "connectionStrings": "[parameters('connectionStrings')]",
+          "detailedErrorLoggingEnabled": true,
+          "phpVersion": "",
+          "requestTracingEnabled": true,
+          "requestTracingExpirationTime": "9999-12-31T23:59:00Z",
+          "use32BitWorkerProcess": false
+        }
+      },
+      "tags": {
+        "[concat('hidden-related:', parameters('serverFarmId'))]": "Resource",
+        "displayName": "[parameters('appService').name]"
+      },
+      "type": "Microsoft.Web/sites"
+    }
+  ],
+  "outputs": {
+  }
+}

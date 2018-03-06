@@ -1,0 +1,31 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "name": {
+      "type": "string"
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "apiVersion": "2014-04-01",
+      "location": "[resourceGroup().location]",
+      "name": "[parameters('name')]",
+      "properties": {
+        "ApplicationId": "[parameters('name')]"
+      },
+      "tags": {
+        "[concat('hidden-link:', resourceGroup().id, '/providers/Microsoft.Web/sites/', parameters('name'))]": "Resource"
+      },
+      "type": "Microsoft.Insights/components"
+    }
+  ],
+  "outputs": {
+    "InstrumentationKey": {
+      "type": "string",
+      "value": "[reference(concat('microsoft.insights/components/', parameters('name'))).InstrumentationKey]"
+    }
+  }
+}

@@ -27,10 +27,17 @@
   <ItemGroup>
     <Content Include="azuredeploy.json" />
     <Content Include="azuredeploy.parameters.json" />
+    <None Include="appInsights.json" />
+    <None Include="appService.json" />
+    <None Include="appServicePlan.json" />
     <None Include="Deployment.targets">
       <Visible>False</Visible>
     </None>
     <Content Include="Deploy-AzureResourceGroup.ps1" />
+    <None Include="scheduler.json" />
+    <None Include="schedulerJob.json" />
+    <None Include="serviceBus.json" />
+    <None Include="storage.json" />
   </ItemGroup>
   <Target Name="GetReferenceAssemblyPaths" />
 </Project>

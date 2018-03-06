@@ -1,0 +1,32 @@
+﻿{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appServicePlan": {
+      "type": "object"
+    }
+  },
+  "variables": {
+  },
+  "resources": [
+    {
+      "name": "[parameters('appServicePlan').name]",
+      "type": "Microsoft.Web/serverfarms",
+      "location": "[resourceGroup().location]",
+      "apiVersion": "2016-09-01",
+      "sku": {
+        "name": "[parameters('appServicePlan').skuName]"
+      },
+      "properties": {
+        "name": "[parameters('appServicePlan').name]",
+        "numberOfWorkers": 1
+      }
+    }
+  ],
+  "outputs": {
+    "appServicePlanId": {
+      "type": "string",
+      "value": "[resourceId('Microsoft.Web/serverfarms', parameters('appServicePlan').name)]"
+    }
+  }
+}
