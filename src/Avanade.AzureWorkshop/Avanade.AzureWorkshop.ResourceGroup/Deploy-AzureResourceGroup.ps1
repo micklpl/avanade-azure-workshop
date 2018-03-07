@@ -27,7 +27,7 @@ function Format-ValidationOutput {
 }
 
 $subscriptionId = ""
-Select-AzureRmSubscription -SubscriptionId $subscriptionId
+Select-AzureRmSubscription -SubscriptionId $subscriptioId
 
 $OptionalParameters = New-Object -TypeName Hashtable
 $TemplateFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateFile))
