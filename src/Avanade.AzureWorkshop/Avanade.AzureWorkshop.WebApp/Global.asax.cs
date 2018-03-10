@@ -1,4 +1,4 @@
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
 using Avanade.AzureWorkshop.WebApp.BusinessLogic;
 using Avanade.AzureWorkshop.WebApp.Services;
@@ -28,17 +28,8 @@ namespace Avanade.AzureWorkshop.WebApp
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
-            builder.RegisterType<GamesService>();
             builder.RegisterType<TeamsService>();
-            builder.RegisterType<PlayersService>();
-            builder.RegisterType<MailgunService>();
-            builder.RegisterType<NewsletterService>();
-            builder.RegisterType<TeamsRepository>();
-            builder.RegisterType<ImagesService>();
-            builder.RegisterType<BinaryFilesRepository>();
-            builder.RegisterType<CsvReader>(); 
-            builder.RegisterGeneric(typeof(TopicService<>));
-            builder.RegisterType<TelemetryService>();
+            builder.RegisterType<CsvReader>();
 
             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));

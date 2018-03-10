@@ -22,22 +22,18 @@
                     {
                         <li class="group-team">
                             <img src="data: image/png;base64, @team.Flag" />
-                            <span>@Html.ActionLink(team.Name, "Index", new { controller = "Teams", id = team.Id })</span>
-                            <span class="points">Games: @team.Games, Pts: @team.Points</span>
+                            <span>@team.Name</span>
+                            <span class="points">Pts: @team.Points</span>
                         </li>
                     }
                 </ol>
-				@Ajax.ActionLink("Play Game in group " + group.GroupLetter, "PlayGame", "Home", new { group = group.GroupLetter }, null);
             }
         </div>
     </div>
     <div class="col-md-6">
         <h2>Top Scorers</h2>
-        
-            @foreach (var scorer in Model.Scorers)
-            {
-              <p>@scorer.Goals @Html.ActionLink(scorer.FullName, "PlayerDetails", new { controller = "Teams", id = scorer.TeamId, playerId = scorer.PlayerId })</p>
-            }
-        
+        <p>
+            ...
+        </p>
     </div>
 </div>

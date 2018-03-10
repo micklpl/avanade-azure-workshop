@@ -1,7 +1,6 @@
 ﻿using Avanade.AzureWorkshop.WebApp.Models;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -11,10 +10,6 @@ namespace Avanade.AzureWorkshop.WebApp.Services
 {
     public class CsvReader
     {
-
-        private readonly string playersData = "Avanade.AzureWorkshop.WebApp.Resources.players.csv";
-        private readonly string teamsData = "Avanade.AzureWorkshop.WebApp.Resources.teams.csv";
-
         private string ReadCsvResource(string path)
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -27,9 +22,9 @@ namespace Avanade.AzureWorkshop.WebApp.Services
         }
 
 
-        public IEnumerable<Team> ReadTeams()
+        public IEnumerable<Team> ReadTeams(string path)
         {
-            var lines = ReadCsvResource(teamsData).Split('\n');
+            var lines = ReadCsvResource(path).Split('\n');
             foreach (var line in lines)
             {
                 if(string.IsNullOrEmpty(line)) yield break;
@@ -42,32 +37,6 @@ namespace Avanade.AzureWorkshop.WebApp.Services
                     Flag = columns[3]
                 };
             }
-        }
-
-        public IEnumerable<Player> ReadPlayers()
-        {
-            var lines = ReadCsvResource(playersData).Split('\n');
-            foreach (var line in lines)
-            {
-                if (string.IsNullOrEmpty(line)) yield break;
-                var columns = line.Split(',');
-
-                yield return new Player()
-                {
-                    TeamId = columns[0],
-                    Number = TryParseNullable(columns[1]),
-                    FullName = columns[2],
-                    Position = columns[3],
-                    DateOfBirth = DateTime.ParseExact(columns[4], "yyyy-MM-dd", CultureInfo.InvariantCulture),
-                    Club = columns[5]
-                };
-            }
-        }
-
-        private int? TryParseNullable(string val)
-        {
-            int outValue;
-            return int.TryParse(val, out outValue) ? (int?)outValue : null;
         }
     }
 }

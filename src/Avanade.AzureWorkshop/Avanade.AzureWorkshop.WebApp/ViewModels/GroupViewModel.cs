@@ -13,10 +13,8 @@ namespace Avanade.AzureWorkshop.WebApp.ViewModels
 
     public class GroupTeamViewModel
     {
-        public string Id { get { return Name.Replace(" ", ""); } }
         public string Name { get; set; }
         public string Flag { get; set; }
-        public int Games { get; set; }
         public int Points { get; set; }
     }
 }
