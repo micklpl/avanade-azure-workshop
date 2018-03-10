@@ -1,11 +1,12 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avanade.AzureWorkshop", "Avanade.AzureWorkshop\Avanade.AzureWorkshop.csproj", "{20106A4B-B32B-40D6-B88C-6F81B530E3DB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avanade.AzureWorkshop.Utils", "Avanade.AzureWorkshop\Avanade.AzureWorkshop.Utils.csproj", "{20106A4B-B32B-40D6-B88C-6F81B530E3DB}"
 EndProject
 Project("{151D2E53-A2C4-4D7D-83FE-D05416EBD58E}") = "Avanade.AzureWorkshop.ResourceGroup", "Avanade.AzureWorkshop.ResourceGroup\Avanade.AzureWorkshop.ResourceGroup.deployproj", "{7A108173-6D34-4407-B09F-301366A6375B}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Avanade.AzureWorkshop.WebApp", "Avanade.AzureWorkshop.WebApp\Avanade.AzureWorkshop.WebApp.csproj", "{65C5D32D-BEC9-4DD7-A591-F5207EEE5AD7}"
 EndProject
 Global
