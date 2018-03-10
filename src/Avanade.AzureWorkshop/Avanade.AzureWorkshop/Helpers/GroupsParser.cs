@@ -31,7 +31,7 @@ namespace Avanade.AzureWorkshop.Helpers
                 {
                     var team = span.SelectSingleNode(".//a");
                     var name = team.InnerText;
-                    var url = @"https://en.wikipedia.org/" + team.Attributes["href"].Value;
+                    var url = @"https://en.wikipedia.org" + team.Attributes["href"].Value;
                     var flag = span.SelectSingleNode(".//img").Attributes["src"].Value;
                     byte[] flagBytes = new WebClient().DownloadData("https:" + flag);
                     sb.Append($"{letter},{name},{url},{Convert.ToBase64String(flagBytes)}\n");

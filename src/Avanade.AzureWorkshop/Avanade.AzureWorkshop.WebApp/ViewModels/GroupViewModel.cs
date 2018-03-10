@@ -15,5 +15,6 @@ namespace Avanade.AzureWorkshop.WebApp.ViewModels
     {
         public string Name { get; set; }
         public string Flag { get; set; }
+        public int Points { get; set; }
     }
 }

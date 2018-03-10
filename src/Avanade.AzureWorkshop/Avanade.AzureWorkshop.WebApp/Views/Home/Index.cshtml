@@ -1,4 +1,7 @@
-﻿@{
+﻿@using Avanade.AzureWorkshop.WebApp.ViewModels
+@model HomePageViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -10,9 +13,22 @@
 <div class="row">
     <div class="col-md-6">
         <h2>Groups</h2>
-        <p>
-            ...
-        </p>
+        <div>
+            @foreach(var group in Model.Groups)
+            {
+                <h4>GROUP @group.GroupLetter</h4>
+                <ol>
+                    @foreach(var team in group.Teams)
+                    {
+                        <li class="group-team">
+                            <img src="data: image/png;base64, @team.Flag" />
+                            <span>@team.Name</span>
+                            <span class="points">Pts: @team.Points</span>
+                        </li>
+                    }
+                </ol>
+            }
+        </div>
     </div>
     <div class="col-md-6">
         <h2>Top Scorers</h2>
