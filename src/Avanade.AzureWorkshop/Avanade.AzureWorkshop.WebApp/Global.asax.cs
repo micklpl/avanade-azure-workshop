@@ -29,9 +29,10 @@ namespace Avanade.AzureWorkshop.WebApp
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
             builder.RegisterType<TeamsService>();
+            builder.RegisterType<PlayersService>(); 
             builder.RegisterType<CsvReader>();
 
-            var container = builder.Build();
+             var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }

@@ -22,7 +22,7 @@
                     {
                         <li class="group-team">
                             <img src="data: image/png;base64, @team.Flag" />
-                            <span>@team.Name</span>
+                            <span>@Html.ActionLink(team.Name, "Index", new { controller = "Teams", id = team.Id })</span>
                             <span class="points">Pts: @team.Points</span>
                         </li>
                     }

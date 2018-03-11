@@ -42,7 +42,7 @@ namespace Avanade.AzureWorkshop.Helpers
 
                     var number = td[0].InnerText;
                     var position = td[1].SelectSingleNode(".//a").InnerText;
-                    var name = row.SelectSingleNode(".//th").FirstChild.InnerText;
+                    var name = row.SelectSingleNode(".//th").FirstChild.InnerText.Replace(",", "");
                     var dateOfBirth = row.SelectSingleNode(".//span[@class='bday']").InnerText;
                     var club = row.SelectNodes(".//a").Last().InnerText;
 
