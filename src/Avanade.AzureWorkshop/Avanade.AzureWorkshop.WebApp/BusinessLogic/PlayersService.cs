@@ -9,16 +9,16 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
 {
     public class PlayersService
     {
-        private readonly CsvReader _csvReader;
+        private readonly TeamsRepository _teamsRepository;
 
-        public PlayersService(CsvReader csvReader)
+        public PlayersService(TeamsRepository teamsRepository)
         {
-            _csvReader = csvReader;
+            _teamsRepository = teamsRepository;
         }
 
         public TeamViewModel GetTeamDetails(string teamId)
         {
-            var players = from player in _csvReader.ReadPlayers()
+            var players = from player in _teamsRepository.FetchPlayers(teamId)
                           where player.TeamId == teamId
                           select new PlayerDetails()
                           {
