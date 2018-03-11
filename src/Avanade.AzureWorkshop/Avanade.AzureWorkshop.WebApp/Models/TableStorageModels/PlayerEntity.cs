@@ -8,11 +8,6 @@ namespace Avanade.AzureWorkshop.WebApp.Models.TableStorageModels
 {
     public class PlayerEntity : TableEntity
     {
-        public PlayerEntity()
-        {
-
-        }
-
         public PlayerEntity(string teamId, string id)
         {
             PartitionKey = teamId;

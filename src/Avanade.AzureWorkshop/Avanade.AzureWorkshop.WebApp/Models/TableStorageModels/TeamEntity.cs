@@ -23,7 +23,6 @@ namespace Avanade.AzureWorkshop.WebApp.Models.TableStorageModels
         public string Name { get; set; }
         public string Url { get; set; }
         public string Flag { get; set; }
-        public int Games { get; set; }
         public int Points { get; set; }
     }
 }
