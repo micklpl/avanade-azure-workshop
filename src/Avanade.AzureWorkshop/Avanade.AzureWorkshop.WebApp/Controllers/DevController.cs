@@ -1,4 +1,5 @@
 ﻿using Avanade.AzureWorkshop.WebApp.Models;
+using Avanade.AzureWorkshop.WebApp.Models.TableStorageModels;
 using Avanade.AzureWorkshop.WebApp.Services;
 using System;
 using System.Collections.Generic;
@@ -42,14 +43,26 @@ namespace Avanade.AzureWorkshop.WebApp.Controllers
             return RedirectToAction("Index");
         }
 
-        private dynamic MapPlayer(Player player)
+        private PlayerEntity MapPlayer(Player player)
         {
-            throw new NotImplementedException();
+            return new PlayerEntity(player.TeamId, Guid.NewGuid().ToString())
+            {
+                Club = player.Club,
+                DateOfBirth = player.DateOfBirth,
+                Number = player.Number,
+                Position = player.Position,
+                FullName = player.FullName
+            };
         }
 
-        private dynamic MapTeam(Team player)
+        private TeamEntity MapTeam(Team team)
         {
-            throw new NotImplementedException();
+            return new TeamEntity(2018.ToString(), team.Name.Replace(" ", ""))
+            {
+                Flag = team.Flag,
+                Name = team.Name,
+                Group = team.Group.ToString()
+            };
         }
     }
 }
