@@ -1,5 +1,4 @@
 ﻿using Avanade.AzureWorkshop.WebApp.Models;
-using Avanade.AzureWorkshop.WebApp.Models.TableStorageModels;
 using Avanade.AzureWorkshop.WebApp.Services;
 using System;
 using System.Collections.Generic;
@@ -37,32 +36,20 @@ namespace Avanade.AzureWorkshop.WebApp.Controllers
             var players = _csvReader.ReadPlayers();
             var teams = _csvReader.ReadTeams();
 
-            await _teamsRepository.StoreTeams(teams.Select(MapTeam));
             await _teamsRepository.StorePlayers(players.Select(MapPlayer));
+            await _teamsRepository.StorePlayers(teams.Select(MapTeam));
 
-            return RedirectToAction("Index");
+            return Index();
         }
 
-        private PlayerEntity MapPlayer(Player player)
+        private dynamic MapPlayer(Player player)
         {
-            return new PlayerEntity(player.TeamId, Guid.NewGuid().ToString())
-            {
-                Club = player.Club,
-                DateOfBirth = player.DateOfBirth,
-                Number = player.Number,
-                Position = player.Position,
-                FullName = player.FullName
-            };
+            throw new NotImplementedException();
         }
 
-        private TeamEntity MapTeam(Team team)
+        private dynamic MapTeam(Team player)
         {
-            return new TeamEntity(2018.ToString(), team.Name.Replace(" ", ""))
-            {
-                Flag = team.Flag,
-                Name = team.Name,
-                Group = team.Group.ToString()
-            };
+            throw new NotImplementedException();
         }
     }
 }

@@ -10,7 +10,6 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
     public class TeamsService
     {
         private readonly CsvReader _csvReader;
-        private readonly string teamsData = "Avanade.AzureWorkshop.WebApp.Resources.teams.csv";
 
         public TeamsService(CsvReader csvReader)
         {
@@ -20,7 +19,7 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
 
         public HomePageViewModel GetHomePageData()
         {
-            var groups = _csvReader.ReadTeams(teamsData).GroupBy(x => x.Group);
+            var groups = _csvReader.ReadTeams().GroupBy(x => x.Group);
 
             var vm = new HomePageViewModel()
             {
