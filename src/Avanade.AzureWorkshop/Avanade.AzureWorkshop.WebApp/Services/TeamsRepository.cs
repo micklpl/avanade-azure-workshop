@@ -55,12 +55,19 @@ namespace Avanade.AzureWorkshop.WebApp.Services
 
         public IEnumerable<TeamEntity> FetchTeams()
         {
-            return Enumerable.Empty<TeamEntity>();
+            var tableClient = GetClient();
+            CloudTable table = tableClient.GetTableReference("teams");
+            var query = new TableQuery<TeamEntity>();
+            return table.ExecuteQuery(query).OrderBy(f => f.Group);
         }
 
         public IEnumerable<PlayerEntity> FetchPlayers(string teamId)
         {
-            return Enumerable.Empty<PlayerEntity>();
+            var tableClient = GetClient();
+            CloudTable table = tableClient.GetTableReference("players");
+            var query = new TableQuery<PlayerEntity>()
+                                .Where(TableQuery.GenerateFilterCondition(nameof(PlayerEntity.PartitionKey), QueryComparisons.Equal, teamId));
+            return table.ExecuteQuery(query).OrderBy(f => f.Number);
         }
     }
 }
