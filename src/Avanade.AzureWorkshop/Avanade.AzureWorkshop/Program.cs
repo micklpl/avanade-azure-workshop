@@ -11,7 +11,8 @@ namespace Avanade.AzureWorkshop.Utils
     {
         static void Main(string[] args)
         {
-            GroupsParser.Run();
+            //GroupsParser.Run();
+            PlayersParser.Run();
         }
     }
 }
