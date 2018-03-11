@@ -10,7 +10,6 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
     public class PlayersService
     {
         private readonly CsvReader _csvReader;
-        private readonly string playersData = "Avanade.AzureWorkshop.WebApp.Resources.players.csv";
 
         public PlayersService(CsvReader csvReader)
         {
@@ -19,7 +18,7 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
 
         public TeamViewModel GetTeamDetails(string teamId)
         {
-            var players = from player in _csvReader.ReadPlayers(playersData)
+            var players = from player in _csvReader.ReadPlayers()
                           where player.TeamId == teamId
                           select new PlayerDetails()
                           {

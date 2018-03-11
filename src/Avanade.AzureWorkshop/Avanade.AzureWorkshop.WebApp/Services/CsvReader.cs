@@ -11,6 +11,10 @@ namespace Avanade.AzureWorkshop.WebApp.Services
 {
     public class CsvReader
     {
+
+        private readonly string playersData = "Avanade.AzureWorkshop.WebApp.Resources.players.csv";
+        private readonly string teamsData = "Avanade.AzureWorkshop.WebApp.Resources.teams.csv";
+
         private string ReadCsvResource(string path)
         {
             var assembly = Assembly.GetExecutingAssembly();
@@ -23,9 +27,9 @@ namespace Avanade.AzureWorkshop.WebApp.Services
         }
 
 
-        public IEnumerable<Team> ReadTeams(string path)
+        public IEnumerable<Team> ReadTeams()
         {
-            var lines = ReadCsvResource(path).Split('\n');
+            var lines = ReadCsvResource(teamsData).Split('\n');
             foreach (var line in lines)
             {
                 if(string.IsNullOrEmpty(line)) yield break;
@@ -40,22 +44,13 @@ namespace Avanade.AzureWorkshop.WebApp.Services
             }
         }
 
-        public IEnumerable<Player> ReadPlayers(string path)
+        public IEnumerable<Player> ReadPlayers()
         {
-            var lines = ReadCsvResource(path).Split('\n');
+            var lines = ReadCsvResource(playersData).Split('\n');
             foreach (var line in lines)
             {
                 if (string.IsNullOrEmpty(line)) yield break;
                 var columns = line.Split(',');
-
-                try
-                {
-                    DateTime.ParseExact(columns[4], "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                }
-                catch(Exception e)
-                {
-                    bool b = true;
-                }
 
                 yield return new Player()
                 {
