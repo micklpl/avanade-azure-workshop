@@ -9,23 +9,23 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
 {
     public class TeamsService
     {
-        private readonly CsvReader _csvReader;
+        private readonly TeamsRepository _teamsRepository;
 
-        public TeamsService(CsvReader csvReader)
+        public TeamsService(TeamsRepository teamsRepository)
         {
-            _csvReader = csvReader;
+            _teamsRepository = teamsRepository;
         }
 
 
         public HomePageViewModel GetHomePageData()
         {
-            var groups = _csvReader.ReadTeams().GroupBy(x => x.Group);
+            var groups = _teamsRepository.FetchTeams().GroupBy(x => x.Group);
 
             var vm = new HomePageViewModel()
             {
                 Groups = groups.Select(g => new GroupViewModel()
                 {
-                    GroupLetter = g.Key,
+                    GroupLetter = Convert.ToChar(g.Key),
                     Teams = g.Select(t =>
                     new GroupTeamViewModel() {
                         Flag = t.Flag,
