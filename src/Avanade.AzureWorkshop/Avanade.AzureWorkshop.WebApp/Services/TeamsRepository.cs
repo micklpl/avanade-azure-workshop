@@ -52,5 +52,15 @@ namespace Avanade.AzureWorkshop.WebApp.Services
                 }                
             }            
         }
+
+        public IEnumerable<TeamEntity> FetchTeams()
+        {
+            return Enumerable.Empty<TeamEntity>();
+        }
+
+        public IEnumerable<PlayerEntity> FetchPlayers(string teamId)
+        {
+            return Enumerable.Empty<PlayerEntity>();
+        }
     }
 }
