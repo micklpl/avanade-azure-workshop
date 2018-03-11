@@ -36,10 +36,10 @@ namespace Avanade.AzureWorkshop.WebApp.Controllers
             var players = _csvReader.ReadPlayers();
             var teams = _csvReader.ReadTeams();
 
+            await _teamsRepository.StoreTeams(teams.Select(MapTeam));
             await _teamsRepository.StorePlayers(players.Select(MapPlayer));
-            await _teamsRepository.StorePlayers(teams.Select(MapTeam));
 
-            return Index();
+            return RedirectToAction("Index");
         }
 
         private dynamic MapPlayer(Player player)
