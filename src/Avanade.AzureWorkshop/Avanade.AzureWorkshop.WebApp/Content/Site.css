@@ -31,3 +31,8 @@ li.group-team{
 .group-team > .points{
     float: right;
 }
+
+.gallery > img{
+    width:100%;
+    max-width:600px;
+}

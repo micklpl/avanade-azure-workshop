@@ -69,5 +69,13 @@ namespace Avanade.AzureWorkshop.WebApp.Services
                                 .Where(TableQuery.GenerateFilterCondition(nameof(PlayerEntity.PartitionKey), QueryComparisons.Equal, teamId));
             return table.ExecuteQuery(query).OrderBy(f => f.Number);
         }
+
+        public PlayerEntity FetchSinglePlayer(string teamId, string playerId)
+        {
+            var tableClient = GetClient();
+            CloudTable table = tableClient.GetTableReference("players");
+            var retrieveOperation = TableOperation.Retrieve<PlayerEntity>(teamId, playerId);
+            return table.Execute(retrieveOperation).Result as PlayerEntity;
+        }
     }
 }
