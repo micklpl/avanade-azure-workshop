@@ -31,6 +31,7 @@ namespace Avanade.AzureWorkshop.WebApp
             builder.RegisterType<TeamsService>();
             builder.RegisterType<PlayersService>(); 
             builder.RegisterType<TeamsRepository>();
+            builder.RegisterType<ImagesService>();
             builder.RegisterType<CsvReader>(); 
 
               var container = builder.Build();

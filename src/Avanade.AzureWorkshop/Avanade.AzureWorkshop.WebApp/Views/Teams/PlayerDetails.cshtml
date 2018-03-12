@@ -1,0 +1,34 @@
+﻿@using Avanade.AzureWorkshop.WebApp.ViewModels
+@model PlayerDetails
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Position</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Club</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">@Model.Number</th>
+            <td>@Model.Position</td>
+            <td>@Model.FullName</td>
+            <td>@Model.Age</td>
+            <td>@Model.Club</td>
+        </tr>
+    </tbody>
+</table>
+
+<div class="gallery">
+    @foreach(var image in Model.Images)
+    {
+        <img src="@image" />
+    }
+</div>
