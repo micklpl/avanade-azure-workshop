@@ -33,10 +33,5 @@ namespace Avanade.AzureWorkshop.WebApp.Services
                 yield return match.Groups[1].Value;
             }
         }
-
-        public byte[] DownloadImage(string url)
-        {
-            return new WebClient().DownloadData(url.Replace(@"\/", @"/"));
-        }
     }
 }
