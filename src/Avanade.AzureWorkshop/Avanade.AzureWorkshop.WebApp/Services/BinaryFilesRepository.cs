@@ -8,20 +8,17 @@ namespace Avanade.AzureWorkshop.WebApp.Services
 {
     public class BinaryFilesRepository
     {
-        public async Task<bool> AnyFileExists(string containerName, string fileName)
+        public bool AnyFileExists(string containerName, string fileName)
         {
-            await Task.Delay(0);
             return false;
         }
 
-        public async Task SaveBlob(string containerName, string fileName, byte[] bytes)
+        public void SaveBlob(string containerName, string fileName, byte[] bytes)
         {
-            await Task.Delay(0);
         }
 
-        public async Task<List<string>> GetBlobUrls(string containerName, string fileName)
+        public List<string> GetBlobUrls(string containerName, string fileName)
         {
-            await Task.Delay(0);
             return Enumerable.Empty<string>().ToList();
         }
     }
