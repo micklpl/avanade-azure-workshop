@@ -51,11 +51,11 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
                 Number = player.Number,
                 Position = player.Position,
                 PlayerId = player.RowKey,
-                Images = GetPlayerImages(player.FullName, player.RowKey, player.PartitionKey).Result
+                Images = GetPlayerImages(player.FullName, player.RowKey, player.PartitionKey)
             };
         }
 
-        private async Task<List<string>> GetPlayerImages(string fullName, string playerId, string teamId)
+        private List<string> GetPlayerImages(string fullName, string playerId, string teamId)
         {
             if (await _binaryFilesRepository.AnyFileExists(teamId, playerId))
             {
