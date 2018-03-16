@@ -57,9 +57,9 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
 
         private List<string> GetPlayerImages(string fullName, string playerId, string teamId)
         {
-            if (await _binaryFilesRepository.AnyFileExists(teamId, playerId))
+            if (_binaryFilesRepository.AnyFileExists(teamId, playerId))
             {
-                return await _binaryFilesRepository.GetBlobUrls(teamId, playerId);
+                return _binaryFilesRepository.GetBlobUrls(teamId, playerId);
             }
 
             var images = _imagesService.SearchForImages(fullName).ToList();
@@ -67,7 +67,7 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
             foreach(var image in images)
             {
                 byte[] data = _imagesService.DownloadImage(image);
-                await _binaryFilesRepository.SaveBlob(teamId, playerId, data);
+                _binaryFilesRepository.SaveBlob(teamId, playerId, data);
             }
 
             return images;
