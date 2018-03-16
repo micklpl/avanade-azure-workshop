@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Autofac;
+using Autofac.Integration.Mvc;
+using Avanade.AzureWorkshop.WebApp.BusinessLogic;
+using Avanade.AzureWorkshop.WebApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +20,23 @@ namespace Avanade.AzureWorkshop.WebApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            RegisterDependencies();
+        }
+
+        protected void RegisterDependencies()
+        {
+            var builder = new ContainerBuilder();
+            builder.RegisterControllers(typeof(MvcApplication).Assembly);
+
+            builder.RegisterType<TeamsService>();
+            builder.RegisterType<PlayersService>(); 
+            builder.RegisterType<TeamsRepository>();
+            builder.RegisterType<ImagesService>();
+            builder.RegisterType<BinaryFilesRepository>();
+            builder.RegisterType<CsvReader>(); 
+
+              var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }
 }

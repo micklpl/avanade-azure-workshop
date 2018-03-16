@@ -1,0 +1,30 @@
+﻿@using Avanade.AzureWorkshop.WebApp.ViewModels
+@model TeamViewModel
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Number</th>
+            <th scope="col">Position</th>
+            <th scope="col">Full Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">Club</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var player in Model.Players)
+        {
+            <tr>
+                <th scope="row">@player.Number</th>
+                <td>@player.Position</td>
+                <td>@Html.ActionLink(player.FullName, "PlayerDetails", new { controller = "Teams", id = Model.TeamId, playerId = player.PlayerId })</td>
+                <td>@player.Age</td>
+                <td>@player.Club</td>
+            </tr>
+        }               
+    </tbody>
+</table>
