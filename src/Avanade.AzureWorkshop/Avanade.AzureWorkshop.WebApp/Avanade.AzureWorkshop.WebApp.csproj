@@ -148,6 +148,7 @@
     <Compile Include="Models\TableStorageModels\TeamEntity.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\BinaryFilesRepository.cs" />
     <Compile Include="Services\CsvReader.cs" />
     <Compile Include="Services\ImagesService.cs" />
     <Compile Include="Services\TeamsRepository.cs" />
