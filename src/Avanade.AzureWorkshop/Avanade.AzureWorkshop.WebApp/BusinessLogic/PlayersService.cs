@@ -57,7 +57,7 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
 
         private async Task<List<string>> GetPlayerImages(string fullName, string playerId, string teamId)
         {
-            if (await _binaryFilesRepository.FileExists(teamId, playerId))
+            if (await _binaryFilesRepository.AnyFileExists(teamId, playerId))
             {
                 return await _binaryFilesRepository.GetBlobUrls(teamId, playerId);
             }
