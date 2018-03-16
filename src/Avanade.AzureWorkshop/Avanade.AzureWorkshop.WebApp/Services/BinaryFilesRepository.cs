@@ -8,7 +8,7 @@ namespace Avanade.AzureWorkshop.WebApp.Services
 {
     public class BinaryFilesRepository
     {
-        public async Task<bool> FileExists(string containerName, string fileName)
+        public async Task<bool> AnyFileExists(string containerName, string fileName)
         {
             await Task.Delay(0);
             return false;
