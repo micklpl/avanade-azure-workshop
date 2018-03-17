@@ -1,4 +1,5 @@
-﻿using Avanade.AzureWorkshop.WebApp.Models.TableStorageModels;
+﻿using Avanade.AzureWorkshop.WebApp.Models.ServiceBusModels;
+using Avanade.AzureWorkshop.WebApp.Models.TableStorageModels;
 using Avanade.AzureWorkshop.WebApp.Services;
 using Avanade.AzureWorkshop.WebApp.ViewModels;
 using System;
@@ -10,12 +11,15 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
     public class TeamsService
     {
         private readonly TeamsRepository _teamsRepository;
+        private readonly TopicService<GameMessageModel> _topicService;
+
         private const int MaxGoalsInGame = 5;
         private static Random _rnd = new Random();
 
-        public TeamsService(TeamsRepository teamsRepository)
+        public TeamsService(TeamsRepository teamsRepository, TopicService<GameMessageModel> topicService)
         {
             _teamsRepository = teamsRepository;
+            _topicService = topicService;
         }
 
 
@@ -59,6 +63,20 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
 
             var team1Scorers = DrawScorers(team1Players, team1Goals).ToList();
             var team2Scorers = DrawScorers(team2Players, team2Goals).ToList();
+
+            var gameMessageModel = new GameMessageModel
+            {
+                Group = group,
+                Team1Name = team1Name,
+                Team2Name = team2Name,
+                DateOfGame = DateTime.Now,
+                Team1Goals = team1Goals,
+                Team2Goals = team2Goals,
+                Team1Scorers = team1Scorers,
+                Team2Scorers = team2Scorers
+            };
+
+            _topicService.SendMessage(gameMessageModel);
         }
 
         public string DrawOpponent(string hostTeam, IList<TeamEntity> teams, IList<GameEntity> games)

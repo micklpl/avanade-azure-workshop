@@ -34,6 +34,7 @@ namespace Avanade.AzureWorkshop.WebApp
             builder.RegisterType<ImagesService>();
             builder.RegisterType<BinaryFilesRepository>();
             builder.RegisterType<CsvReader>(); 
+            builder.RegisterGeneric(typeof(TopicService<>));
 
               var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
