@@ -27,6 +27,7 @@
                         </li>
                     }
                 </ol>
+				@Ajax.ActionLink("Play Game in group " + group.GroupLetter, "PlayGame", "Home", new { group = group.GroupLetter }, null);
             }
         </div>
     </div>

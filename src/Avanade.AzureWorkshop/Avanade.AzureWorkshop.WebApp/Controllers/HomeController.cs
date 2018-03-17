@@ -34,5 +34,12 @@ namespace Avanade.AzureWorkshop.WebApp.Controllers
 
             return View();
         }
+
+        [Route("/PlayGame/{group}")]
+        public ActionResult PlayGame(string group)
+        {
+            _teamsService.PlayGame(group);
+            return RedirectToAction("Index");
+        }
     }
 }
