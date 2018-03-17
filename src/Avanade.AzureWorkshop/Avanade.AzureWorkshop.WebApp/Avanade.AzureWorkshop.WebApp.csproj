@@ -144,6 +144,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Player.cs" />
+    <Compile Include="Models\TableStorageModels\GameEntity.cs" />
     <Compile Include="Models\TableStorageModels\PlayerEntity.cs" />
     <Compile Include="Models\TableStorageModels\TeamEntity.cs" />
     <Compile Include="Models\Team.cs" />
