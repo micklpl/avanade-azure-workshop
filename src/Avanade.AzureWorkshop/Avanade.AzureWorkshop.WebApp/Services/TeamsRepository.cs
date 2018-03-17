@@ -53,12 +53,38 @@ namespace Avanade.AzureWorkshop.WebApp.Services
             }            
         }
 
+        public async Task CreateGames()
+        {
+            var tableClient = GetClient();
+            CloudTable table = tableClient.GetTableReference("games");
+
+            await table.CreateIfNotExistsAsync();
+        }
+
+        public IEnumerable<GameEntity> FetchGamesByGroup(string group)
+        {
+            var tableClient = GetClient();
+            CloudTable table = tableClient.GetTableReference("games");
+            var query = new TableQuery<GameEntity>()
+                .Where(TableQuery.GenerateFilterCondition(nameof(GameEntity.Group), QueryComparisons.Equal, group));
+            return table.ExecuteQuery(query).OrderBy(f => f.DateOfGame);
+        }
+
         public IEnumerable<TeamEntity> FetchTeams()
         {
             var tableClient = GetClient();
             CloudTable table = tableClient.GetTableReference("teams");
             var query = new TableQuery<TeamEntity>();
             return table.ExecuteQuery(query).OrderBy(f => f.Group);
+        }
+
+        public IEnumerable<TeamEntity> FetchTeamsByGroup(string group)
+        {
+            var tableClient = GetClient();
+            CloudTable table = tableClient.GetTableReference("teams");
+            var query = new TableQuery<TeamEntity>()
+                .Where(TableQuery.GenerateFilterCondition(nameof(TeamEntity.Group), QueryComparisons.Equal, group));
+            return table.ExecuteQuery(query).OrderBy(f => f.Name);
         }
 
         public IEnumerable<PlayerEntity> FetchPlayers(string teamId)
