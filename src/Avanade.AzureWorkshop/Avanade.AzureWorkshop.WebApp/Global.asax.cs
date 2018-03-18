@@ -28,6 +28,7 @@ namespace Avanade.AzureWorkshop.WebApp
             var builder = new ContainerBuilder();
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
 
+            builder.RegisterType<GamesService>();
             builder.RegisterType<TeamsService>();
             builder.RegisterType<PlayersService>(); 
             builder.RegisterType<TeamsRepository>();
