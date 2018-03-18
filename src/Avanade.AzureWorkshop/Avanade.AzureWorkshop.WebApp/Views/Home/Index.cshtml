@@ -33,8 +33,11 @@
     </div>
     <div class="col-md-6">
         <h2>Top Scorers</h2>
-        <p>
-            ...
-        </p>
+        
+            @foreach (var scorer in Model.Scorers)
+            {
+              <p>@scorer.Goals @Html.ActionLink(scorer.FullName, "PlayerDetails", new { controller = "Teams", id = scorer.TeamId, playerId = scorer.PlayerId })</p>
+            }
+        
     </div>
 </div>

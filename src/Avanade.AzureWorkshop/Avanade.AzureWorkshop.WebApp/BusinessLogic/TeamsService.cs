@@ -26,6 +26,7 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
         public HomePageViewModel GetHomePageData()
         {
             var groups = _teamsRepository.FetchTeams().GroupBy(x => x.Group);
+            var scorers = _teamsRepository.FetchScorers();
 
             var vm = new HomePageViewModel()
             {
@@ -39,6 +40,13 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
                         Name = t.Name,
                         Points = t.Points
                     }).OrderByDescending(x => x.Points).ToList()
+                }).ToList(),
+                Scorers = scorers.Select(x => new ScorersViewModel
+                {
+                    Goals = x.Goals,
+                    FullName = x.FullName,
+                    PlayerId = x.RowKey,
+                    TeamId = x.TeamId
                 }).ToList()
             };
 
