@@ -139,5 +139,14 @@ namespace Avanade.AzureWorkshop.WebApp.Services
             var retrieveOperation = TableOperation.Retrieve<PlayerEntity>(teamId, playerId);
             return table.Execute(retrieveOperation).Result as PlayerEntity;
         }
+
+        public IEnumerable<PlayerEntity> FetchScorers()
+        {
+            var tableClient = GetClient();
+            CloudTable table = tableClient.GetTableReference("players");
+            var query = new TableQuery<PlayerEntity>()
+                .Where(TableQuery.GenerateFilterConditionForInt(nameof(PlayerEntity.Goals), QueryComparisons.GreaterThan, 0));
+            return table.ExecuteQuery(query).OrderByDescending(f => f.Goals);
+        }
     }
 }
