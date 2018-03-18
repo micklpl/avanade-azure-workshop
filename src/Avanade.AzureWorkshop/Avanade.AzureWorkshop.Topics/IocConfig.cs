@@ -14,9 +14,6 @@ namespace Avanade.AzureWorkshop.Topics
 
             builder.RegisterType<GamesService>();
             builder.RegisterType<TeamsRepository>();
-            builder.RegisterType<MailgunService>();
-            builder.RegisterType<NewsletterService>();
-            builder.RegisterType<TelemetryService>();
 
             _container = builder.Build();
         }

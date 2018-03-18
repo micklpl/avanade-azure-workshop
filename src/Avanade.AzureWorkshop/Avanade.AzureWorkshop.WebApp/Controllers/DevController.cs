@@ -39,7 +39,6 @@ namespace Avanade.AzureWorkshop.WebApp.Controllers
 
             await _teamsRepository.StoreTeams(teams.Select(MapTeam));
             await _teamsRepository.StorePlayers(players.Select(MapPlayer));
-            await _teamsRepository.CreateGames();
 
             return RedirectToAction("Index");
         }

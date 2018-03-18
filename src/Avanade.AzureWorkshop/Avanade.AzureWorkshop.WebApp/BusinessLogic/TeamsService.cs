@@ -35,8 +35,10 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
                     Teams = g.Select(t =>
                     new GroupTeamViewModel() {
                         Flag = t.Flag,
-                        Name = t.Name
-                    }).ToList()
+                        Games = t.Games,
+                        Name = t.Name,
+                        Points = t.Points
+                    }).OrderByDescending(x => x.Points).ToList()
                 }).ToList()
             };
 

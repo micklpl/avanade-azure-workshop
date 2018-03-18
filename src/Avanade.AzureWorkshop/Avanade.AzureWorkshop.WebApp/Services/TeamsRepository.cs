@@ -18,6 +18,29 @@ namespace Avanade.AzureWorkshop.WebApp.Services
             return storageAccount.CreateCloudTableClient();
         }
 
+        public void UpdateTeam(TeamEntity team)
+        {
+            var tableClient = GetClient();
+            CloudTable table = tableClient.GetTableReference("teams");
+
+            table.Execute(TableOperation.Replace(team));
+        }
+
+        public void UpdatePlayers(IEnumerable<PlayerEntity> players)
+        {
+            var tableClient = GetClient();
+            CloudTable table = tableClient.GetTableReference("players");
+
+            TableBatchOperation batchOperation = new TableBatchOperation();
+
+            foreach (var player in players)
+            {
+                batchOperation.InsertOrReplace(player);
+            }
+
+            table.ExecuteBatch(batchOperation);
+        }
+
         public async Task StoreTeams(IEnumerable<TeamEntity> teams)
         {
             var tableClient = GetClient();
@@ -53,12 +76,16 @@ namespace Avanade.AzureWorkshop.WebApp.Services
             }            
         }
 
-        public async Task CreateGames()
+        public async Task StoreGame(GameEntity game)
         {
             var tableClient = GetClient();
             CloudTable table = tableClient.GetTableReference("games");
 
             await table.CreateIfNotExistsAsync();
+
+            TableBatchOperation batchOperation = new TableBatchOperation();
+            batchOperation.Insert(game);
+            table.ExecuteBatch(batchOperation);
         }
 
         public IEnumerable<GameEntity> FetchGamesByGroup(string group)
@@ -68,6 +95,15 @@ namespace Avanade.AzureWorkshop.WebApp.Services
             var query = new TableQuery<GameEntity>()
                 .Where(TableQuery.GenerateFilterCondition(nameof(GameEntity.Group), QueryComparisons.Equal, group));
             return table.ExecuteQuery(query).OrderBy(f => f.DateOfGame);
+        }
+
+        public TeamEntity FetchTeam(string teamName)
+        {
+            var tableClient = GetClient();
+            CloudTable table = tableClient.GetTableReference("teams");
+            var query = new TableQuery<TeamEntity>()
+                .Where(TableQuery.GenerateFilterCondition(nameof(TeamEntity.Name), QueryComparisons.Equal, teamName));
+            return table.ExecuteQuery(query).FirstOrDefault();
         }
 
         public IEnumerable<TeamEntity> FetchTeams()
