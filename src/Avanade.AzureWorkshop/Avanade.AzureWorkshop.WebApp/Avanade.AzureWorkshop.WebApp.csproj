@@ -164,6 +164,7 @@
     <Compile Include="Services\TopicService.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
+    <Compile Include="ViewModels\ScorersViewModel.cs" />
     <Compile Include="ViewModels\TeamViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
