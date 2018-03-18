@@ -93,7 +93,7 @@ namespace Avanade.AzureWorkshop.WebApp.Services
             var tableClient = GetClient();
             CloudTable table = tableClient.GetTableReference("games");
             var query = new TableQuery<GameEntity>()
-                .Where(TableQuery.GenerateFilterCondition(nameof(GameEntity.Group), QueryComparisons.Equal, group));
+                .Where(TableQuery.GenerateFilterCondition(nameof(GameEntity.PartitionKey), QueryComparisons.Equal, group));
             return table.ExecuteQuery(query).OrderBy(f => f.DateOfGame);
         }
 

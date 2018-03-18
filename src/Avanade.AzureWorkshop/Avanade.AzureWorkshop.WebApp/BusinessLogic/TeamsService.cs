@@ -59,6 +59,8 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
             var teamsInGroup = _teamsRepository.FetchTeamsByGroup(group).Where(x => x.Games < 3).ToList();
             var gamesInGroup = _teamsRepository.FetchGamesByGroup(group).ToList();
 
+            if (teamsInGroup.Count == 0) return;
+
             var index = _rnd.Next(teamsInGroup.Count);
 
             var team1Goals = _rnd.Next(MaxGoalsInGame);
