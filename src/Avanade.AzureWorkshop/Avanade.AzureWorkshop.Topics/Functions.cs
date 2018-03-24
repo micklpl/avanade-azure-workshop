@@ -28,7 +28,8 @@ namespace Avanade.AzureWorkshop.Topics
         {
             await ProcessMessage(textWriter, new BaseMessageModel(), async (scope, model) =>
             {
-                await WriteMessage("Newsletter arrived", textWriter);
+                var newsletterService = scope.Resolve<NewsletterService>();
+                await newsletterService.SendNewsletter();
             });
         }
 
