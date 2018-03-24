@@ -17,24 +17,31 @@ namespace Avanade.AzureWorkshop.Topics
 
         public async Task ProcessGameMessage([ServiceBusTrigger(nameof(GameMessageModel), SubscriptionName)] GameMessageModel message, TextWriter textWriter)
         {
-            await ProcessTopic(message, textWriter);
+            await ProcessMessage(textWriter, message, async (scope, model) =>
+            {
+                var gamesService = scope.Resolve<GamesService>();
+                await gamesService.SaveGameResult(message);
+            });
         }
 
         public async Task ProcessNewsletter([ServiceBusTrigger(NewsletterTriggerName, SubscriptionName)] BrokeredMessage message, TextWriter textWriter)
         {
-            await WriteMessage("Newsletter arrived", textWriter);
+            await ProcessMessage(textWriter, new BaseMessageModel(), async (scope, model) =>
+            {
+                await WriteMessage("Newsletter arrived", textWriter);
+            });
         }
 
-        private async Task ProcessTopic<TTopic>(TTopic message, TextWriter textWriter) where TTopic : BaseMessageModel
+        private static async Task ProcessMessage<TMessage>(TextWriter textWriter, TMessage message, Func<ILifetimeScope, TMessage, Task> action)
+            where TMessage : BaseMessageModel
         {
             using (var scope = Program.Container.BeginLifetimeScope())
             {
+                await WriteMessage($"Processing topic message {typeof(TMessage).Name}. Body: {JsonConvert.SerializeObject(message)}", textWriter);
+
                 try
                 {
-                    await WriteMessage($"Processing topic message {typeof(TTopic).Name}. Body: {JsonConvert.SerializeObject(message)}", textWriter);
-
-                    var gamesService = scope.Resolve<GamesService>();
-                    await gamesService.SaveGameResult(message as GameMessageModel);
+                    await action(scope, message);
                 }
                 catch (Exception ex)
                 {
