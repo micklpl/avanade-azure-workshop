@@ -2,6 +2,7 @@
 using Avanade.AzureWorkshop.WebApp.BusinessLogic;
 using Avanade.AzureWorkshop.WebApp.Models.ServiceBusModels;
 using Microsoft.Azure.WebJobs;
+using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
 using System;
 using System.IO;
@@ -12,10 +13,16 @@ namespace Avanade.AzureWorkshop.Topics
     public class Functions
     {
         private const string SubscriptionName = "webjobssubscription";
+        private const string NewsletterTriggerName = "Newsletter";
 
         public async Task ProcessGameMessage([ServiceBusTrigger(nameof(GameMessageModel), SubscriptionName)] GameMessageModel message, TextWriter textWriter)
         {
             await ProcessTopic(message, textWriter);
+        }
+
+        public async Task ProcessNewsletter([ServiceBusTrigger(NewsletterTriggerName, SubscriptionName)] BrokeredMessage message, TextWriter textWriter)
+        {
+            await WriteMessage("Newsletter arrived", textWriter);
         }
 
         private async Task ProcessTopic<TTopic>(TTopic message, TextWriter textWriter) where TTopic : BaseMessageModel
