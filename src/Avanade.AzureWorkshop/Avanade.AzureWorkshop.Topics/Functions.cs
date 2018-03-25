@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Avanade.AzureWorkshop.WebApp.BusinessLogic;
 using Avanade.AzureWorkshop.WebApp.Models.ServiceBusModels;
+using Avanade.AzureWorkshop.WebApp.Services;
 using Microsoft.Azure.WebJobs;
 using Microsoft.ServiceBus.Messaging;
 using Newtonsoft.Json;
@@ -20,7 +21,10 @@ namespace Avanade.AzureWorkshop.Topics
             await ProcessMessage(textWriter, message, async (scope, model) =>
             {
                 var gamesService = scope.Resolve<GamesService>();
+                var telemetryService = scope.Resolve<TelemetryService>();
                 await gamesService.SaveGameResult(message);
+                await WriteMessage(message.CorrelationId, textWriter);
+                telemetryService.Log("Succesfully saved game result", message.CorrelationId);
             });
         }
 
