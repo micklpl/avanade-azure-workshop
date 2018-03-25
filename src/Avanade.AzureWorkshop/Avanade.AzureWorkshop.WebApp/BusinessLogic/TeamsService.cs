@@ -12,14 +12,17 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
     {
         private readonly TeamsRepository _teamsRepository;
         private readonly TopicService<GameMessageModel> _topicService;
+        private readonly TelemetryService _telemetryService;
 
         private const int MaxGoalsInGame = 5;
-        private static Random _rnd = new Random();
+        private static Random _rnd = new Random();        
 
-        public TeamsService(TeamsRepository teamsRepository, TopicService<GameMessageModel> topicService)
+        public TeamsService(TeamsRepository teamsRepository, 
+            TopicService<GameMessageModel> topicService, TelemetryService telemetryService)
         {
             _teamsRepository = teamsRepository;
             _topicService = topicService;
+            _telemetryService = telemetryService;
         }
 
 
@@ -54,7 +57,7 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
             return vm;
         }
 
-        public void PlayGame(string group)
+        public void PlayGame(string group, string correlationId)
         {
             var teamsInGroup = _teamsRepository.FetchTeamsByGroup(group).Where(x => x.Games < 3).ToList();
             var gamesInGroup = _teamsRepository.FetchGamesByGroup(group).ToList();
@@ -76,6 +79,8 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
             var team1Scorers = DrawScorers(team1Players, team1Goals).ToList();
             var team2Scorers = DrawScorers(team2Players, team2Goals).ToList();
 
+            _telemetryService.Log($"New result generated {team1Name}:{team2Name} {team1Goals}:{team2Goals}", correlationId);
+
             var gameMessageModel = new GameMessageModel
             {
                 Group = group,
@@ -85,7 +90,8 @@ namespace Avanade.AzureWorkshop.WebApp.BusinessLogic
                 Team1Goals = team1Goals,
                 Team2Goals = team2Goals,
                 Team1Scorers = team1Scorers,
-                Team2Scorers = team2Scorers
+                Team2Scorers = team2Scorers,
+                CorrelationId = correlationId
             };
 
             _topicService.SendMessage(gameMessageModel);
