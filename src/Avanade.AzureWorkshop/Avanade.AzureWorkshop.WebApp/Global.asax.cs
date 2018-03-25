@@ -38,8 +38,9 @@ namespace Avanade.AzureWorkshop.WebApp
             builder.RegisterType<BinaryFilesRepository>();
             builder.RegisterType<CsvReader>(); 
             builder.RegisterGeneric(typeof(TopicService<>));
+            builder.RegisterType<TelemetryService>();
 
-              var container = builder.Build();
+            var container = builder.Build();
             DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
         }
     }

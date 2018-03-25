@@ -189,6 +189,7 @@
     <Compile Include="Controllers\DevController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Filters\CorrelationIdFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -205,6 +206,7 @@
     <Compile Include="Services\ImagesService.cs" />
     <Compile Include="Services\MailgunService .cs" />
     <Compile Include="Services\TeamsRepository.cs" />
+    <Compile Include="Services\TelemetryService.cs" />
     <Compile Include="Services\TopicService.cs" />
     <Compile Include="ViewModels\GroupViewModel.cs" />
     <Compile Include="ViewModels\HomePageViewModel.cs" />
