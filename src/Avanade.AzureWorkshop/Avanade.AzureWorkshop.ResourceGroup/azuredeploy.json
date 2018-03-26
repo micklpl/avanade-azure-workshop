@@ -61,7 +61,7 @@
           "name": { "value": "[variables('appService').name]" }
         },
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/templates/', variables('appInsightsTemplateName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('appInsightsTemplateName'), parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         }
       },
@@ -76,7 +76,7 @@
           "appServicePlan": { "value": "[variables('appServicePlan')]" }
         },
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/templates/', variables('appServicePlanTemplateName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('appServicePlanTemplateName'), parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         }
       },
@@ -145,7 +145,7 @@
           "serverFarmId": { "value": "[reference('appServicePlanTemplate').outputs.appServicePlanId.value]" }
         },
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/templates/', variables('appServiceTemplateName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('appServiceTemplateName'), parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         }
       },
@@ -160,7 +160,7 @@
           "name": { "value": "[variables('scheduler').name]" }
         },
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/templates/', variables('schedulerTemplateName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('schedulerTemplateName'), parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         }
       },
@@ -205,7 +205,7 @@
           }
         },
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/templates/', variables('schedulerJobTemplateName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('schedulerJobTemplateName'), parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         }
       },
@@ -264,7 +264,7 @@
           }
         },
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/templates/', variables('schedulerJobTemplateName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('schedulerJobTemplateName'), parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         }
       },
@@ -279,7 +279,7 @@
           "serviceBus": { "value": "[variables('serviceBus')]" }
         },
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/templates/', variables('serviceBusTemplateName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('serviceBusTemplateName'), parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         }
       },
@@ -294,7 +294,7 @@
           "name": { "value": "[variables('storage').dataName]" }
         },
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/templates/', variables('storageTemplateName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('storageTemplateName'), parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         }
       },
@@ -309,7 +309,7 @@
           "name": { "value": "[variables('storage').logsName]" }
         },
         "templateLink": {
-          "uri": "[concat(parameters('_artifactsLocation'), '/templates/', variables('storageTemplateName'), parameters('_artifactsLocationSasToken'))]",
+          "uri": "[concat(parameters('_artifactsLocation'), '/', variables('storageTemplateName'), parameters('_artifactsLocationSasToken'))]",
           "contentVersion": "1.0.0.0"
         }
       },
