@@ -6,7 +6,6 @@ namespace Avanade.AzureWorkshop.WebApp.Models.ServiceBusModels
 {
     public class GameMessageModel : BaseMessageModel
     {
-        [DataMember]
         public string Group { get; set; }
         public string Team1Name { get; set; }
         public string Team2Name { get; set; }
