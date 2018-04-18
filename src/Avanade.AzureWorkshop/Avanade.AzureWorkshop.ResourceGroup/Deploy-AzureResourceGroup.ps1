@@ -26,8 +26,8 @@ function Format-ValidationOutput {
     return @($ValidationOutput | Where-Object { $_ -ne $null } | ForEach-Object { @('  ' * $Depth + ': ' + $_.Message) + @(Format-ValidationOutput @($_.Details) ($Depth + 1)) })
 }
 
-$subscriptionName = "Workforce App - Dev"
-Select-AzureRmSubscription -SubscriptionName $subscriptionName
+$subscriptionId = ""
+Select-AzureRmSubscription -SubscriptionId $subscriptionId
 
 $OptionalParameters = New-Object -TypeName Hashtable
 $TemplateFile = [System.IO.Path]::GetFullPath([System.IO.Path]::Combine($PSScriptRoot, $TemplateFile))

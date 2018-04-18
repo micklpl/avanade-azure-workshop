@@ -20,7 +20,7 @@
   "variables": {
     "appInsightsTemplateName": "appInsights.json",
     "appService": {
-      "name": "[concat(parameters('avanadeAppEnvironment'),'-avanade-workshop-api')]"
+      "name": "[concat(parameters('avanadeAppEnvironment'),'-avanade-workshop-app')]"
     },
     "appServicePlan": {
       "name": "[concat(parameters('avanadeAppEnvironment'),'-avanade-workshop-serviceplan')]",
@@ -98,20 +98,20 @@
           "appSettings": {
             "value": [
               {
-                "name": "Azure.ServiceBus.Scheme",
+                "name": "serviceBusScheme",
                 "value": "sb"
               },
               {
-                "name": "Azure.ServiceBus.ServiceName",
+                "name": "serviceBusServiceName",
                 "value": "[variables('serviceBus').name]"
               },
               {
-                "name": "Azure.ServiceBus.SharedAccessKeyName",
+                "name": "serviceBusSharedAccessKeyName",
                 "value": "[variables('serviceBus').defaultSASKeyName]"
               },
               {
-                "name": "Azure.ServiceBus.SharedAccessKeyValue",
-                "value": "SETUP KEY VALUE"
+                "name": "serviceBusSharedAccessKeyValue",
+                "value": "PASTE_RootManageSharedAccessKey_HERE"
               },
               {
                 "name": "Azure.ServiceBus.ReThrowInterval",
